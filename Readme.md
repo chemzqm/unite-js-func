@@ -11,7 +11,7 @@
 
 ## 安装
 
-需要安装 [parseFunc](https://github.com/chemzqm/parsefunc) 来完成解析功能，它是一个命令行工具，通过 npm 安装：
+需要安装 [parsefunc](https://github.com/chemzqm/parsefunc) 来完成解析功能，它是一个命令行工具，通过 npm 安装：
 
     npm install -g parsefunc
 
