@@ -15,16 +15,21 @@
 
     npm install -g parsefunc
 
-然后使用你熟悉的包工具进行安装，例如：[vundle](https://github.com/gmarik/vundle)
+然后使用你熟悉的 vim 包工具进行安装，例如：[vundle](https://github.com/gmarik/vundle)
 
 .vimrc 中添加：
 
     Plugin 'chemzqm/unite-js-func'
+    " unite 也是必须的
+    Plugin 'Shougo/unite.vim'
+    " vimproc 可完成异步操作，可选
+    Plugin 'Shougo/vimproc'
 
 然后安装：
 
     :so ~/.vimrc
     :BundleInstall
+
 
 ## 使用
 
