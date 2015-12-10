@@ -76,10 +76,14 @@ function! s:source.gather_candidates(args, context)
 
   if !len(type)
     let lines = getline(1, '$')
-    let list = map(split(system("parsefunc", lines), '\n'), 'split(v:val, ":")')
+    let res = system("parsefunc", lines)
+    let list = map(split(res, '\n'), 'split(v:val, ":")')
   else
-    let list = map(split(system("parsefunc " . opts), '\n'), 'split(v:val, ":")')
+    let res = system("parsefunc " . opts)
+    let list = map(split(res, '\n'), 'split(v:val, ":")')
   endif
+
+  if v:shell_error | echo res | return [] | endif
 
   " "action__type" is necessary to avoid being added into cmdline-history.
   return map(list, '{
