@@ -59,49 +59,7 @@
 
 ## 使用自定义命令查找
 
-通过自定义命令可以更便捷的查找函数，以下是我在 `.vimrc` 中的配置:
-
-``` VimL
-autocmd FileType javascript :call SetLoadFunctions()
-
-function! SetLoadFunctions()
-  " 当前文件
-  command! -nargs=? -bar -buffer F  execute 'call LoadFunctions("c", "<args>")'
-  " 当前模块
-  command! -nargs=? -bar -buffer Ft execute 'call LoadFunctions("t", "<args>")'
-  " 相对引用文件
-  command! -nargs=? -bar -buffer Fr execute 'call LoadFunctions("r", "<args>")'
-  " 全部模块
-  command! -nargs=? -bar -buffer Fa execute 'call LoadFunctions("a", "<args>")'
-  " 模块引用
-  command! -nargs=? -bar -buffer Fe execute 'call LoadFunctions("e", "<args>")'
-  " 指定模块
-  command! -nargs=+ -bar -buffer Fm execute 'call LoadFunctions("m", "<args>")'
-endfunction
-
-function! LoadFunctions(type, args)
-  let args = split(a:args, ' ')
-  if !len(args)| let args = [''] |endif
-  let input = args[0]
-  let type = a:type
-  let name =''
-  if a:type ==# 'a'
-    let type = 'm'
-  endif
-  if a:type ==# 'm'
-    let type = "m"
-    let name = args[0]
-    let input = len(args) > 1 ? args[1] : ''
-  endif
-  if len(name)
-    execute 'Unite func -custom-func-type=' . type . ' -custom-func-name=' . name . ' -input=' . input
-  else
-    execute 'Unite func -custom-func-type=' . type . ' -input=' . input
-  endif
-endfunction
-```
-
-这些配置实现了通过 `:F(a/t/r/e/m) name` 快速查找函数的功能
+可参考我的 vim 配置：https://gist.github.com/chemzqm/7501f2ba0ccab3e5030c
 
 ## 小技巧
 
