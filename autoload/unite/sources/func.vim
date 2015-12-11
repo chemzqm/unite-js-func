@@ -83,7 +83,10 @@ function! s:source.gather_candidates(args, context)
     let list = map(split(res, '\n'), 'split(v:val, ":")')
   endif
 
-  if v:shell_error | echo res | return [] | endif
+  if v:shell_error
+      call unite#print_source_error(res, s:source.name)
+      return []
+  endif
 
   " "action__type" is necessary to avoid being added into cmdline-history.
   return map(list, '{
