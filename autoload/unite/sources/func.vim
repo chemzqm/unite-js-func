@@ -11,12 +11,12 @@ let s:source = {
       \ 'matchers' : 'matcher_regexp',
       \ }
 
-function! s:source.hooks.on_init(args, context)
+function! s:source.hooks.on_init(args, context) abort
   "let a:context.source__input = get(a:args, 2, a:context.input)
   let a:context.source__input = len(a:context.input) == 0 ? ' ' : a:context.input
 endfunction
 
-function! s:source.hooks.on_syntax(args, context)
+function! s:source.hooks.on_syntax(args, context) abort
   syntax case ignore
   syntax match uniteSource__GrepHeader /[^:]*: \d\+: \(\d\+: \)\?/ contained
         \ containedin=uniteSource__Grep
@@ -35,10 +35,10 @@ function! s:source.hooks.on_syntax(args, context)
         \ g:unite_source_func_search_word_highlight)
 endfunction
 
-function! s:source.hooks.on_close(args, context)
+function! s:source.hooks.on_close(args, context) abort
 endfunction
 
-function! s:format(list)
+function! s:format(list) abort
   if len(a:list) == 1
     return printf("%s", a:list[0])
   endif
@@ -54,7 +54,7 @@ function! s:format(list)
   return printf("%s: %s: %s", path, linenr, split(text,'\.')[-1])
 endfunction
 
-function! s:source.gather_candidates(args, context)
+function! s:source.gather_candidates(args, context) abort
   let type = get(a:context, 'custom_func_type', '')
   let opts = expand('%')
   if type ==# 't'
@@ -100,16 +100,16 @@ function! s:source.gather_candidates(args, context)
         \ }')
 endfunction
 
-function! s:path(str)
+function! s:path(str) abort
   let p = a:str ==# 'stdin' ? expand('%') : a:str
   return unite#util#substitute_path_separator(fnamemodify(p, ':p'))
 endfunction
 
-function! s:basename(str)
+function! s:basename(str) abort
   return split('.'.a:str, '\.')[-1]
 endfunction
 
-function! unite#sources#func#define()
+function! unite#sources#func#define() abort
   return s:source
 endfunction
 
