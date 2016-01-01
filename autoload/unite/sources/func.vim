@@ -14,6 +14,7 @@ let s:source = {
 function! s:source.hooks.on_init(args, context) abort
   "let a:context.source__input = get(a:args, 2, a:context.input)
   let a:context.source__input = len(a:context.input) == 0 ? ' ' : a:context.input
+  call s:resolvaRoot()
 endfunction
 
 function! s:source.hooks.on_syntax(args, context) abort
@@ -56,7 +57,6 @@ endfunction
 
 function! s:source.gather_candidates(args, context) abort
   let type = get(a:context, 'custom_func_type', '')
-  let opts = expand('%')
   if type ==# 't'
     let opts = '-m this'
   elseif type ==# 'm'
@@ -70,9 +70,10 @@ function! s:source.gather_candidates(args, context) abort
     let opts = '-r '.fnameescape(expand('%'))
   elseif type ==# 'e'
     let opts = '-m ' . expand('%')
+  else
+    let opts = expand('%')
   endif
-
-  let opts = opts . ' -e ' . &encoding
+  let opts .= ' -e ' . &encoding
 
   if !len(type)
     let lines = getline(1, '$')
@@ -98,6 +99,17 @@ function! s:source.gather_candidates(args, context) abort
         \ "action__path": s:path(v:val[0]),
         \ "action__directory": fnamemodify(v:val[0], ":h"),
         \ }')
+endfunction
+
+" lcd to project root if root not in current cwd
+function! s:resolvaRoot() abort
+  let file = findfile('package.json', ".;")
+  if !len(file) | return | endif
+  let dir = fnamemodify(file, ':h')
+  let cwd = getcwd()
+  if cwd !~ dir
+    execute 'lcd ' . dir
+  endif
 endfunction
 
 function! s:path(str) abort
