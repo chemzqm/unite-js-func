@@ -4,7 +4,7 @@
 
 支持多种查找模式，支持模块别名（通过设置 package.json 中的 browser 属性），
 
-暂时还不支持 es2015，过段时间会完成
+_2016-5-24_: 支持 es2015
 
 ![func](https://cloud.githubusercontent.com/assets/251450/11688504/070ed288-9ec8-11e5-8b99-3408e8b9cb50.gif)
 
@@ -39,15 +39,15 @@
 
 * 查找当前文件非模块引用的函数（通过相对路径 require 的文件）
 
-      :Unite -custom-func-type=r
+      :Unite -custom-func-type=r func
 
 * 查找当前文件模块引用的全部函数（通过模块名进行 require）
 
-      :Unite -custom-func-type=e
+      :Unite -custom-func-type=e func
 
 * 查找指定模块的全部函数 (支持 webpack browsersify npmjs 所支持的 [browser 别名](https://gist.github.com/defunctzombie/4339901) )
 
-      :Unite -custom-func-type=m -custom-func-name=moduleName
+      :Unite -custom-func-type=m -custom-func-name=moduleName func
 
 * 查找当前模块内的全部函数 (通过递归解析 package.json 中 main 定义的主文件的依赖)
 
