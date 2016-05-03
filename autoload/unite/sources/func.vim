@@ -3,6 +3,11 @@ set cpo&vim
 
 call unite#util#set_default('g:unite_source_func_search_word_highlight', 'Search')
 
+if !executable('parsefunc')
+  echohl WarningMsg | echon 'Command parsefunc not found, please install with npm first!' | echohl None
+  finish
+endif
+
 let s:source = {
       \ 'name': 'func',
       \ 'hooks': {},
@@ -124,7 +129,6 @@ endfunction
 function! unite#sources#func#define() abort
   return s:source
 endfunction
-
 
 "unlet s:source
 
