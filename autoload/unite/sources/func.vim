@@ -4,7 +4,7 @@ set cpo&vim
 call unite#util#set_default('g:unite_source_func_search_word_highlight', 'Search')
 
 if !executable('parsefunc')
-  echohl WarningMsg | echon 'Command parsefunc not found, please install with npm first!' | echohl None
+  echohl WarningMsg | echon 'Command parsefunc not found, please run `npm install pasrsefunc` first!' | echohl None
   finish
 endif
 
