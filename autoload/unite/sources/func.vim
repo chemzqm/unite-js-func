@@ -96,7 +96,8 @@ function! s:source.gather_candidates(args, context) abort
 
   " "action__type" is necessary to avoid being added into cmdline-history.
   return map(list, '{
-        \ "word": s:format(v:val),
+        \ "word": tolower(v:val[-1]),
+        \ "abbr": s:format(v:val),
         \ "source": "func",
         \ "kind": ["file", "jump_list"],
         \ "action__text": s:format(v:val),
