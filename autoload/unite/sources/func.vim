@@ -61,11 +61,11 @@ function! s:format(list) abort
 endfunction
 
 function! s:source.gather_candidates(args, context) abort
-  let type = get(a:context, 'custom_func_type', '')
+  let type = get(a:args, 0, '')
   if type ==# 't'
     let opts = '-m this'
   elseif type ==# 'm'
-    let name = get(a:context, 'custom_func_name', '')
+    let name = get(a:args, 1, '')
     if len(name)
       let opts = '-m '.name
     else

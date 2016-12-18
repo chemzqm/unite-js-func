@@ -33,23 +33,23 @@ to your `.vimrc` and run:
 
 * Find function of current file
 
-    :Unite func
+      :Unite func
 
 * Find function of related files (exclude ralated modules)
 
-      :Unite -custom-func-type=e func
+      :Unite func:e
 
 * Find function of a specified related module
 
-      :Unite -custom-func-type=m -custom-func-name=moduleName func
+      :Unite func:m:module_name
 
 * Find function of current module
 
-      :Unite -custom-func-type=t
+      :Unite func:t
 
 * FInd function of all related modules
 
-      :Unite -custom-func-type=m
+      :Unite func:m
 
 _My vim configuration for this plugin https://gist.github.com/chemzqm/7501f2ba0ccab3e5030c#file-vimrc-vim_
 
