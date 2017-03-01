@@ -2,6 +2,8 @@
 
 A plugin of [unite.vim](https://github.com/Shougo/unite.vim) helps to find javascript functions quickly.
 
+**This plugin is deprecated, consider use [denite-extra](https://github.com/chemzqm/denite-extra) instead**
+
 ## Features
 
 * Find function in current file
